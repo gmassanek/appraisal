@@ -135,11 +135,14 @@ module AcceptanceTestHelpers
       source 'https://rubygems.org'
 
       gem 'appraisal', :path => '#{PROJECT_ROOT}'
+
+      if RUBY_VERSION < "1.9"
+        gem "i18n", "~> 0.6.0"
+        gem "activesupport", "~> 3.2.21"
+      end
     Gemfile
 
-    in_test_directory do
-      `bundle install --binstubs --local`
-    end
+    run "bundle install --binstubs --local"
   end
 
   def in_test_directory(&block)
