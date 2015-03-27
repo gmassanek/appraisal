@@ -14,7 +14,7 @@ describe Appraisal::Utils do
 
   describe '.format_arguments' do
     it 'prints out arguments without enclosing square brackets' do
-      arguments = [:foo, bar: { baz: 'ball' }]
+      arguments = [:foo, { :bar => { :baz => 'ball' }}]
 
       expect(Appraisal::Utils.format_arguments(arguments)).to eq(
         ':foo, :bar => { :baz => "ball" }'
