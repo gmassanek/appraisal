@@ -4,11 +4,12 @@ require 'appraisal/utils'
 describe Appraisal::Utils do
   describe '.format_string' do
     it 'prints out a nice looking hash without a brackets' do
-      hash = { :foo => 'bar', 'baz' => { :ball => 'boo' } }
+      hash = { :foo => 'bar' }
+      expect(Appraisal::Utils.format_string(hash)).to eq(':foo => "bar"')
 
-      expect(Appraisal::Utils.format_string(hash)).to eq(
-        ':foo => "bar", "baz" => { :ball => "boo" }'
-      )
+      hash = { 'baz' => { :ball => 'boo' }}
+      expect(Appraisal::Utils.format_string(hash)).
+        to eq('"baz" => { :ball => "boo" }')
     end
   end
 
