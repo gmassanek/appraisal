@@ -3,7 +3,7 @@ require 'active_support/core_ext/string/strip'
 require 'active_support/core_ext/string/filters'
 require 'active_support/concern'
 require 'appraisal/utils'
-require_relative 'dependency_helpers'
+require "./spec/support/dependency_helpers"
 
 module AcceptanceTestHelpers
   extend ActiveSupport::Concern
@@ -15,7 +15,7 @@ module AcceptanceTestHelpers
   included do
     metadata[:type] = :acceptance
 
-    before parallel: true do
+    before :parallel => true do
       unless Appraisal::Utils.support_parallel_installation?
         pending 'This Bundler version does not support --jobs flag.'
       end
